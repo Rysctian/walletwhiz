@@ -4,7 +4,9 @@ import { redirect } from "next/navigation";
 import DashboardOverview from "./_components/dashboard-overview";
 
 export default async function Page() {
-  const user = await currentUser();
+
+  const user = await currentUser()
+
   if (!user) {
     redirect("/sign-in");
   }
