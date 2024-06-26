@@ -61,7 +61,7 @@ function CategoryCard({ userSettings, from, to }: CategoryCardProps) {
 export default CategoryCard;
 
 interface CategoriesCardProps {
-  data: getCategoriesStatsResponseType;
+  data: getCategoriesStatsResponseType['stats'];
   type: TransactionType;
   formatter: Intl.NumberFormat;
   title: string;
