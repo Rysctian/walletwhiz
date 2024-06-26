@@ -9,11 +9,12 @@ import React, { useState } from "react";
 import { toast } from "sonner";
 import TransactionTable from "./_components/transaction-table";
 
-function page() {
+function Page() {
   const [dateRange, setDateRange] = useState<{ from: Date; to: Date }>({
     from: startOfMonth(new Date()),
     to: new Date(),
   });
+
   return (
     <>
       <Navbar />
@@ -29,35 +30,31 @@ function page() {
             </p>
           </div>
           <div className="flex flex-col">
-          <small className="text-muted-foreground ml-1">Select date range</small>
-          <DateRangePicker
-            initialDateFrom={dateRange.from}
-            initialDateTo={dateRange.to}
-            showCompare={false}
-            onUpdate={(values) => {
-              const { from, to } = values.range;
-              // We update the date range only if both dates are set
-
-              if (!from || !to) return;
-              if (differenceInDays(to, from) > MaxDateRange) {
-                toast.error(
-                  `The selected date range is too big. Max allowed range is ${MaxDateRange} days!`
-                );
-                return;
-              }
-
-              setDateRange({ from, to });
-            }}
-          />
-          
+            <small className="text-muted-foreground ml-1">Select date range</small>
+            <DateRangePicker
+              initialDateFrom={dateRange.from}
+              initialDateTo={dateRange.to}
+              showCompare={false}
+              onUpdate={(values) => {
+                const { from, to } = values.range;
+                if (!from || !to) return;
+                if (differenceInDays(to, from) > MaxDateRange) {
+                  toast.error(
+                    `The selected date range is too big. Max allowed range is ${MaxDateRange} days!`
+                  );
+                  return;
+                }
+                setDateRange({ from, to });
+              }}
+            />
           </div>
         </div>
       </div>
       <div className="container">
-        <TransactionTable from={dateRange.from} to={dateRange.to}/>
+        <TransactionTable from={dateRange.from} to={dateRange.to} />
       </div>
     </>
   );
 }
 
-export default page;
+export default Page;
