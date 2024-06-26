@@ -34,7 +34,6 @@ async function getHistoryIncomePeriods(userId: string) {
 
   const years = result.map((val) => val.year);
   if (years.length === 0) {
-    // Return the current year
     return [new Date().getFullYear()];
   }
 

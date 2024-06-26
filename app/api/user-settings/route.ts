@@ -10,7 +10,7 @@ async function GET(req: Request) {
     redirect("/sign-in");
   }
 
-  // Find a unique user ID first 
+
   let userSettings = await prisma.userSettings.findUnique({
     where: {
       userId: user.id,
@@ -18,7 +18,6 @@ async function GET(req: Request) {
   });
 
 
-  // then it will throw to API request, if user still not exist the default will be on USD
   if (!userSettings) {
     userSettings = await prisma.userSettings.create({
       data: {
