@@ -43,14 +43,13 @@ export function CurrencyComboBox() {
     null
   )
 
-  // fetch the current currency of user
+
   const userSettings = useQuery({
     queryKey: ["userSettings"],
     queryFn: () => fetch("api/user-settings").then((res) => res.json()),
   });
 
 
-  // check what is the current currency in the database for that user
   React.useEffect(()=>{
     if(!userSettings.data) return ;
 
@@ -63,7 +62,6 @@ export function CurrencyComboBox() {
 
   
 
-  // update/mutate the currency
   const mutation = useMutation({
     mutationFn:  UpdateUserCurrency,
     onSuccess: (data: UserSettings) => {
