@@ -8,11 +8,15 @@ import { UserButton, currentUser } from '@clerk/nextjs'
 import Link from 'next/link'
 import React from 'react'
 import { CurrencyComboBox } from '@/components/currency/CurrencyComboBox'
-import { Spinner } from '@/components/Skeleton/Spinner'
+import { redirect } from 'next/navigation'
+
 
 async function page() {
-    const user = await currentUser()
-
+    const user = await currentUser();
+    if (!user) {
+      redirect("/sign-in");
+    }
+  
     return (
         <div className='container md:w-[50%] flex items-center justify-center gap-4 flex-col'>
             <div className='flex items-center justify-center gap-4 flex-col'>
@@ -20,11 +24,9 @@ async function page() {
                     <h2 className='md:text-[2rem] text-[2rem] tracking-tighter xl:text-[3.5rem] font-extrabold'>Welcome to </h2>
                     <Logo />
                 </div>
-                <h2 className='font-medium text-[1.3rem] md:text-[1rem] text-center md:justify-center'>Let's get started by selecting your preffered currency!</h2>
+                <h2 className='font-medium text-[1.3rem] md:text-[1rem] text-center md:justify-center'>Let&apos;s get started by selecting your preferred currency!</h2>
                 <p className='text-[.89rem] text-muted-foreground'>NOTE: You can change this setting anytime after setup </p>
             </div>
-            <UserButton afterSignOutUrl="/sign-in" />
-
             <Separator />
             <Card className='w-full flex flex-col'>
                 <CardHeader>Currency

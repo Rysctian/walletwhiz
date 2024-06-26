@@ -51,7 +51,7 @@ function DeleteDialogCategory({ category, trigger }: Props) {
         <AlertDialogHeader>
           <AlertDialogTitle>
             Are you sure you want to delete{" "}
-            <span className="text-red-600">&quot;{category.name}&quot;</span> category?
+            <span className="text-red-600">{category.name}</span> category?
           </AlertDialogTitle>
           <AlertDialogDescription>
             NOTE: This will permanently delete your category
