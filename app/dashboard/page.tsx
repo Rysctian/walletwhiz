@@ -2,7 +2,8 @@ import prisma from "@/lib/prisma";
 import { currentUser } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import DashboardOverview from "./_components/dashboard-overview";
-export default async function page() {
+
+export default async function Page() {
   const user = await currentUser();
   if (!user) {
     redirect("/sign-in");
